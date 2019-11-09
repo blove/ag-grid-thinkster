@@ -26,6 +26,11 @@ const routes: Route[] = [
       import('./features/getting-started/getting-started.module').then(
         m => m.GettingStartedModule
       )
+  },
+  {
+    path: 'data',
+    loadChildren: () =>
+      import('./features/data/data.module').then(m => m.DataModule)
   }
 ];
 

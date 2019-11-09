@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
-import { SharedModule } from 'src/app/shared/shared.module';
 
+import { SharedModule } from '../../shared/shared.module';
 import { ColumnApiComponent } from './column-api';
 import { FilteringComponent } from './filtering';
 import { GridApiComponent } from './grid-api';
