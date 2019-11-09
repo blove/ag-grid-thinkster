@@ -10,9 +10,10 @@ import { products } from '../../../../../data/data.json';
 export class FilteringComponent {
   /**
    * The column definitions is an array of ColDef objects.
-   * headerName: the user friendly name to display for the column header.
-   * field: the field (property) of the rowData
-   * sortable: boolean (default is false) to indicate if the column can be sorted
+   * headerName: The name to render in the column header.
+   *             If not specified and field is specified, the field name would be used as the header name.
+   * field: The field of the row to get the cells data from.
+   * sortable: Set to true to allow sorting on this column.
    * filter:
    *   agNumberColumnFilter - number filter
    *   boolean - default filter is the agTextColumnFilter in community edition

@@ -5,10 +5,10 @@ import { BehaviorSubject } from 'rxjs';
 import { products } from '../../../../../data/data.json';
 
 @Component({
-  templateUrl: './row-selection.component.html',
-  styleUrls: ['./row-selection.component.scss']
+  templateUrl: './grid-api.component.html',
+  styleUrls: ['./grid-api.component.scss']
 })
-export class RowSelectionComponent {
+export class GridApiComponent {
   /**
    * The column definitions is an array of ColDef objects.
    * headerName: The name to render in the column header.
@@ -59,7 +59,23 @@ export class RowSelectionComponent {
   private gridApi: GridApi;
 
   onGridReady({ api }) {
+    // get reference to the Grid API
     this.gridApi = api;
+
+    // size the columns to fit in the grid
+    this.gridApi.sizeColumnsToFit();
+  }
+
+  onSelectAll(): void {
+    this.gridApi.selectAll();
+  }
+
+  onDeselectAll(): void {
+    this.gridApi.deselectAll();
+  }
+
+  onExportToCsv(): void {
+    this.gridApi.exportDataAsCsv();
   }
 
   onSelectionChanged(): void {

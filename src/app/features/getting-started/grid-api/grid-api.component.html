@@ -1,0 +1,21 @@
+<app-content>
+  <app-title>Grid API</app-title>
+  <ag-grid-angular
+    #agGrid
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+    (selectionChanged)="onSelectionChanged($event)"
+    rowSelection="multiple"
+  >
+  </ag-grid-angular>
+
+  <p>
+    <button (click)="onSelectAll()">Select All</button>
+    <button (click)="onDeselectAll()">Deselect All</button>
+    <button (click)="onExportToCsv()">Export to CSV</button>
+  </p>
+
+  <p>Selection: {{ selection | async }}</p>
+</app-content>
