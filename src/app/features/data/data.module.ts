@@ -7,8 +7,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SharedModule } from '../../shared/shared.module';
 import { AsyncComponent } from './async/async.component';
 import { SimpleComponent } from './simple';
+import { ValueGetterComponent } from './value-getter';
 
-const directives = [AsyncComponent, SimpleComponent];
+const directives = [AsyncComponent, SimpleComponent, ValueGetterComponent];
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
     component: AsyncComponent
   },
   {
-    path: 'value-getter'
+    path: 'value-getter',
+    component: ValueGetterComponent
   },
   {
     path: 'update'

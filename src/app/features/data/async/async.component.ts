@@ -8,7 +8,6 @@ import { CustomerService } from 'src/app/services';
 const DEFAULT_LIMIT = 20;
 
 @Component({
-  selector: 'app-async',
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']
 })
