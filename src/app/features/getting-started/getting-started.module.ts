@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 import { SharedModule } from 'src/app/shared/shared.module';
 
+import { ColumnApiComponent } from './column-api';
 import { FilteringComponent } from './filtering';
 import { GridApiComponent } from './grid-api';
 import { RowSelectionComponent } from './row-selection';
 import { SortingComponent } from './sorting';
 
 const directives = [
+  ColumnApiComponent,
   FilteringComponent,
   GridApiComponent,
   SortingComponent,
@@ -32,6 +34,10 @@ const routes: Routes = [
   {
     path: 'grid-api',
     component: GridApiComponent
+  },
+  {
+    path: 'column-api',
+    component: ColumnApiComponent
   }
 ];
 
