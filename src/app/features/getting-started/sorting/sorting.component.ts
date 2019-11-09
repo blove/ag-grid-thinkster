@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
 
 import { customers } from '../../../../../data/data.json';
@@ -7,7 +7,7 @@ import { customers } from '../../../../../data/data.json';
   templateUrl: './sorting.component.html',
   styleUrls: ['./sorting.component.scss']
 })
-export class SortingComponent implements OnInit {
+export class SortingComponent {
   /**
    * The column definitions is an array of ColDef objects.
    * headerName: the user friendly name to display for the column header.
@@ -20,6 +20,9 @@ export class SortingComponent implements OnInit {
     { headerName: 'Address', field: 'address' }
   ];
 
+  /**
+   * Import customers from /data/data.json file
+   */
   rowData: Array<{ [key: string]: string | number }> = customers.map(
     ({ name, catchPhrase, address }) => ({
       name,
@@ -27,8 +30,4 @@ export class SortingComponent implements OnInit {
       address: `${address.street1} ${address.city}, ${address.state} ${address.zip}`
     })
   );
-
-  constructor() {}
-
-  ngOnInit() {}
 }
