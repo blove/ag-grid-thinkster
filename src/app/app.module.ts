@@ -1,16 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Route, RouterModule } from '@angular/router';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './features/home';
+import { SharedModule } from './shared/shared.module';
+
+const directives = [AppComponent, HomeComponent];
+
+const routes: Route[] = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'getting-started',
+    loadChildren: () =>
+      import('./features/getting-started/getting-started.module').then(
+        m => m.GettingStartedModule
+      )
+  }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [...directives],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
