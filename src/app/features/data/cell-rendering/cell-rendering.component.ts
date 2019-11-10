@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { ColDef, GridApi } from 'ag-grid-community';
-import { Customer } from 'src/app/models/index.js';
 
 import { customers } from '../../../../../data/data.json';
+import { Customer } from '../../../models';
 
 @Component({
-  templateUrl: './value-getter.component.html',
-  styleUrls: ['./value-getter.component.scss']
+  selector: 'app-cell-rendering',
+  templateUrl: './cell-rendering.component.html',
+  styleUrls: ['./cell-rendering.component.scss']
 })
-export class ValueGetterComponent {
+export class CellRenderingComponent {
   /**
    * The column definitions is an array of ColDef objects.
    * headerName: The name to render in the column header.
@@ -18,6 +19,13 @@ export class ValueGetterComponent {
    */
   columnDefs: ColDef[] = [
     { headerName: 'Name', field: 'name' },
+    {
+      headerName: 'avatar',
+      field: 'avatar',
+      width: 100,
+      cellRenderer: ({ value }) =>
+        `<img style="height: 14px; width: 14px;" src="${value}" />`
+    },
     { headerName: 'Catch Phrase', field: 'catchPhrase' },
     {
       headerName: 'Address',

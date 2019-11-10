@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ColDef, ColumnApi, GridApi } from 'ag-grid-community';
+import { ColDef, ColumnApi } from 'ag-grid-community';
 
 import { products } from '../../../../../data/data.json';
 
@@ -21,17 +21,13 @@ export class ColumnApiComponent {
    * filter:
    *   agNumberColumnFilter - number filter
    *   boolean - default filter is the agTextColumnFilter in community edition
-   * checkboxSelection: Set to true (or return true from function) to render a selection checkbox in the column.
    */
   columnDefs: ColDef[] = [
     {
       headerName: 'Name',
       field: 'name',
       sortable: true,
-      filter: true,
-      checkboxSelection: true,
-      headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true
+      filter: true
     },
     {
       colId: 'price',
@@ -64,31 +60,12 @@ export class ColumnApiComponent {
   /** The ag-Grid Column API. */
   private columnApi: ColumnApi;
 
-  /** The ag-Grid Grid API. */
-  private gridApi: GridApi;
-
-  onGridReady({ api, columnApi }) {
+  onGridReady({ columnApi }) {
     this.columnApi = columnApi;
-    this.gridApi = api;
   }
 
   onToggleDetailsColumn(): void {
     const detailsColumn = this.columnApi.getColumn('details');
-    console.log(detailsColumn.isVisible());
     this.columnApi.setColumnVisible(detailsColumn, !detailsColumn.isVisible());
-  }
-
-  onSortByNameAndPrice(sort: 'asc' | 'desc'): void {
-    this.gridApi.setSortModel([
-      {
-        colId: 'name',
-        sort
-      },
-      {
-        colId: 'price',
-        sort
-      }
-    ]);
-    console.log(this.gridApi.getSortModel());
   }
 }

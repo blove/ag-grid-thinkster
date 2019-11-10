@@ -7,6 +7,7 @@
     [pagination]="true"
     [paginationPageSize]="paginationPageSize | async"
     [suppressPaginationPanel]="true"
+    (gridReady)="onGridReady($event)"
   >
   </ag-grid-angular>
   <form [formGroup]="formGroup">

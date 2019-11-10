@@ -6,10 +6,9 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { SharedModule } from '../../shared/shared.module';
 import { AsyncComponent } from './async/async.component';
+import { CellRenderingComponent } from './cell-rendering';
 import { SimpleComponent } from './simple';
 import { ValueGetterComponent } from './value-getter';
-
-const directives = [AsyncComponent, SimpleComponent, ValueGetterComponent];
 
 const routes: Routes = [
   {
@@ -25,12 +24,21 @@ const routes: Routes = [
     component: ValueGetterComponent
   },
   {
+    path: 'cell-rendering',
+    component: CellRenderingComponent
+  },
+  {
     path: 'update'
   }
 ];
 
 @NgModule({
-  declarations: [...directives],
+  declarations: [
+    AsyncComponent,
+    CellRenderingComponent,
+    SimpleComponent,
+    ValueGetterComponent
+  ],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,

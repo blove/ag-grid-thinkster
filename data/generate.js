@@ -19,6 +19,7 @@ module.exports = () => {
       id,
       name: faker.company.companyName(),
       catchPhrase: faker.company.catchPhrase(),
+      avatar: faker.image.avatar(),
       address: {
         street1: faker.address.streetName(),
         city: faker.address.city(),
@@ -43,7 +44,8 @@ module.exports = () => {
       name: faker.commerce.productName(),
       price: faker.commerce.price(),
       color: faker.commerce.color(),
-      details: faker.commerce.productAdjective()
+      details: faker.commerce.productAdjective(),
+      imageUrl: faker.image.imageUrl()
     });
   }
 

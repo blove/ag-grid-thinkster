@@ -6,16 +6,17 @@
     [rowData]="rowData"
     [columnDefs]="columnDefs"
     (gridReady)="onGridReady($event)"
-    (selectionChanged)="onSelectionChanged($event)"
-    rowSelection="multiple"
   >
   </ag-grid-angular>
-
   <p>
     <button (click)="onSelectAll()">Select All</button>
     <button (click)="onDeselectAll()">Deselect All</button>
     <button (click)="onExportToCsv()">Export to CSV</button>
+    <button (click)="onSortByNameAndPrice('asc')">
+      Sort Name &amp; Price Ascending
+    </button>
+    <button (click)="onSortByNameAndPrice('desc')">
+      Sort Name &amp; Price Descending
+    </button>
   </p>
-
-  <p>Selection: {{ selection | async }}</p>
 </app-content>

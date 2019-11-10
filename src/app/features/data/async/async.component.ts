@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridApi } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { CustomerService } from 'src/app/services';
@@ -59,4 +59,8 @@ export class AsyncComponent {
     private readonly customerService: CustomerService,
     private readonly formBuilder: FormBuilder
   ) {}
+
+  onGridReady({ api }: { api: GridApi }) {
+    api.sizeColumnsToFit();
+  }
 }

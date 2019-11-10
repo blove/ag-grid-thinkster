@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ColDef, GridApi } from 'ag-grid-community';
-import { BehaviorSubject } from 'rxjs';
 
 import { products } from '../../../../../data/data.json';
 
@@ -25,10 +24,7 @@ export class GridApiComponent {
       headerName: 'Name',
       field: 'name',
       sortable: true,
-      filter: true,
-      checkboxSelection: true,
-      headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true
+      filter: true
     },
     {
       headerName: 'Price',
@@ -52,11 +48,16 @@ export class GridApiComponent {
     })
   );
 
-  /** A comma-separated list of selected products by name. */
-  selection = new BehaviorSubject<string>('');
-
   /** The ag-Grid Grid API. */
   private gridApi: GridApi;
+
+  onDeselectAll(): void {
+    this.gridApi.deselectAll();
+  }
+
+  onExportToCsv(): void {
+    this.gridApi.exportDataAsCsv();
+  }
 
   onGridReady({ api }) {
     // get reference to the Grid API
@@ -70,19 +71,17 @@ export class GridApiComponent {
     this.gridApi.selectAll();
   }
 
-  onDeselectAll(): void {
-    this.gridApi.deselectAll();
-  }
-
-  onExportToCsv(): void {
-    this.gridApi.exportDataAsCsv();
-  }
-
-  onSelectionChanged(): void {
-    const selectedProductNames = this.gridApi
-      .getSelectedRows()
-      .map(row => row.name)
-      .join(', ');
-    this.selection.next(selectedProductNames);
+  onSortByNameAndPrice(sort: 'asc' | 'desc'): void {
+    this.gridApi.setSortModel([
+      {
+        colId: 'name',
+        sort
+      },
+      {
+        colId: 'price',
+        sort
+      }
+    ]);
+    console.log(this.gridApi.getSortModel());
   }
 }

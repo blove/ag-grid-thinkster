@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridApi } from 'ag-grid-community';
 
 import { customers } from '../../../../../data/data.json';
 
@@ -31,4 +31,8 @@ export class SimpleComponent {
       address: `${address.street1} ${address.city}, ${address.state} ${address.zip}`
     })
   );
+
+  onGridReady({ api }: { api: GridApi }) {
+    api.sizeColumnsToFit();
+  }
 }

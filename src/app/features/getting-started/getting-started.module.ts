@@ -10,14 +10,6 @@ import { GridApiComponent } from './grid-api';
 import { RowSelectionComponent } from './row-selection';
 import { SortingComponent } from './sorting';
 
-const directives = [
-  ColumnApiComponent,
-  FilteringComponent,
-  GridApiComponent,
-  SortingComponent,
-  RowSelectionComponent
-];
-
 const routes: Routes = [
   {
     path: 'sorting',
@@ -42,7 +34,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [...directives],
+  declarations: [
+    ColumnApiComponent,
+    FilteringComponent,
+    GridApiComponent,
+    SortingComponent,
+    RowSelectionComponent
+  ],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,
