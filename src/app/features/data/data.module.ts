@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { AsyncComponent } from './async/async.component';
 import { CellRenderingComponent } from './cell-rendering';
 import { SimpleComponent } from './simple';
+import { UpdatingComponent } from './updating';
 import { ValueGetterComponent } from './value-getter';
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
     component: CellRenderingComponent
   },
   {
-    path: 'update'
+    path: 'updating',
+    component: UpdatingComponent
   }
 ];
 
@@ -37,6 +39,7 @@ const routes: Routes = [
     AsyncComponent,
     CellRenderingComponent,
     SimpleComponent,
+    UpdatingComponent,
     ValueGetterComponent
   ],
   imports: [

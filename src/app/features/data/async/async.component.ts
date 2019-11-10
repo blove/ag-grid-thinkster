@@ -22,7 +22,10 @@ export class AsyncComponent {
   columnDefs: ColDef[] = [
     { headerName: 'Name', field: 'name' },
     { headerName: 'Catch Phrase', field: 'catchPhrase' },
-    { headerName: 'Address', field: 'address' }
+    { headerName: 'Street', field: 'address.street1' },
+    { headerName: 'City', field: 'address.city' },
+    { headerName: 'State', field: 'address.state' },
+    { headerName: 'Zip', field: 'address.zip' }
   ];
 
   /** The form for controling the grid. */
@@ -42,17 +45,7 @@ export class AsyncComponent {
   /** Fetched users from reqres.in */
   customers = this.formGroup.valueChanges.pipe(
     startWith({ limit: DEFAULT_LIMIT }),
-    switchMap(({ limit }) =>
-      this.customerService.fetch(this.page, limit).pipe(
-        map(customers =>
-          customers.map(({ name, catchPhrase, address }) => ({
-            name,
-            catchPhrase,
-            address: `${address.street1} ${address.city}, ${address.state} ${address.zip}`
-          }))
-        )
-      )
-    )
+    switchMap(({ limit }) => this.customerService.fetch(this.page, limit))
   );
 
   constructor(

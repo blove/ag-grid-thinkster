@@ -18,19 +18,16 @@ export class SimpleComponent {
   columnDefs: ColDef[] = [
     { headerName: 'Name', field: 'name' },
     { headerName: 'Catch Phrase', field: 'catchPhrase' },
-    { headerName: 'Address', field: 'address' }
+    { headerName: 'Street', field: 'address.street1' },
+    { headerName: 'City', field: 'address.city' },
+    { headerName: 'State', field: 'address.state' },
+    { headerName: 'Zip', field: 'address.zip' }
   ];
 
   /**
    * Import customers from /data/data.json file
    */
-  rowData: Array<{ [key: string]: string | number }> = customers.map(
-    ({ name, catchPhrase, address }) => ({
-      name,
-      catchPhrase,
-      address: `${address.street1} ${address.city}, ${address.state} ${address.zip}`
-    })
-  );
+  rowData: Array<{ [key: string]: string | number | object }> = customers;
 
   onGridReady({ api }: { api: GridApi }) {
     api.sizeColumnsToFit();

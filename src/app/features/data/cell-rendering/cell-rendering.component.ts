@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ColDef, GridApi } from 'ag-grid-community';
 
 import { customers } from '../../../../../data/data.json';
-import { Customer } from '../../../models';
 
 @Component({
   selector: 'app-cell-rendering',
@@ -27,11 +26,10 @@ export class CellRenderingComponent {
         `<img style="height: 14px; width: 14px;" src="${value}" />`
     },
     { headerName: 'Catch Phrase', field: 'catchPhrase' },
-    {
-      headerName: 'Address',
-      valueGetter: ({ data }: { data: Customer }) =>
-        `${data.address.street1} ${data.address.city}, ${data.address.state} ${data.address.zip}`
-    }
+    { headerName: 'Street', field: 'address.street1' },
+    { headerName: 'City', field: 'address.city' },
+    { headerName: 'State', field: 'address.state' },
+    { headerName: 'Zip', field: 'address.zip' }
   ];
 
   /**

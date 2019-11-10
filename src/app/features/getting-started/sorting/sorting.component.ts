@@ -17,18 +17,11 @@ export class SortingComponent {
    */
   columnDefs: ColDef[] = [
     { headerName: 'Name', field: 'name', sortable: true },
-    { headerName: 'Catch Phrase', field: 'catchPhrase', sortable: true },
-    { headerName: 'Address', field: 'address' }
+    { headerName: 'Catch Phrase', field: 'catchPhrase', sortable: true }
   ];
 
   /**
    * Import customers from /data/data.json file
    */
-  rowData: Array<{ [key: string]: string | number }> = customers.map(
-    ({ name, catchPhrase, address }) => ({
-      name,
-      catchPhrase,
-      address: `${address.street1} ${address.city}, ${address.state} ${address.zip}`
-    })
-  );
+  rowData: Array<{ [key: string]: string | number | object }> = customers;
 }
