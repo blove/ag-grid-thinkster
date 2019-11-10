@@ -13,7 +13,7 @@ module.exports = () => {
 
   const faker = require('faker');
 
-  for (let customer = 0; customer < 100; customer++) {
+  for (let customer = 0; customer < 500; customer++) {
     const id = data.customers.length + 1;
     data.customers.push({
       id,

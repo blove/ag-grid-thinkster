@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SharedModule } from '../../shared/shared.module';
 import { AsyncComponent } from './async/async.component';
 import { CellRenderingComponent } from './cell-rendering';
+import { InfiniteComponent } from './infinite';
 import { SimpleComponent } from './simple';
 import { UpdatingComponent } from './updating';
 import { ValueGetterComponent } from './value-getter';
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'updating',
     component: UpdatingComponent
+  },
+  {
+    path: 'infinite',
+    component: InfiniteComponent
   }
 ];
 
@@ -38,6 +43,7 @@ const routes: Routes = [
   declarations: [
     AsyncComponent,
     CellRenderingComponent,
+    InfiniteComponent,
     SimpleComponent,
     UpdatingComponent,
     ValueGetterComponent

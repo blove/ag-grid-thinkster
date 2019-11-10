@@ -42,10 +42,10 @@ export class AsyncComponent {
     map(({ limit }) => limit)
   );
 
-  /** Fetched users from reqres.in */
+  /** Paginated customers. */
   customers = this.formGroup.valueChanges.pipe(
     startWith({ limit: DEFAULT_LIMIT }),
-    switchMap(({ limit }) => this.customerService.fetch(this.page, limit))
+    switchMap(({ limit }) => this.customerService.paginate(this.page, limit))
   );
 
   constructor(
