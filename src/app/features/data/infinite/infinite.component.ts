@@ -10,6 +10,9 @@ import { CustomerService } from 'src/app/services';
   styleUrls: ['./infinite.component.scss']
 })
 export class InfiniteComponent implements OnDestroy {
+  /** The infinite row model block size. */
+  cacheBlockSize = 20;
+
   /** Column definitions. */
   columnDefs: ColDef[] = [
     { headerName: 'Name', field: 'name' },
@@ -35,9 +38,6 @@ export class InfiniteComponent implements OnDestroy {
 
   /** The initial row count for infinite row model. */
   infiniteInitialRowCount = 20;
-
-  /** The infinite row model block size. */
-  infiniteBlockSize = 20;
 
   /** Unsubscribe from observable streams when the component is destroyed or when the infinite scroll datasource is destoyed. */
   private destroy = new Subject<void>();

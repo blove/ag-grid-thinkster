@@ -31,6 +31,11 @@ const routes: Route[] = [
     path: 'data',
     loadChildren: () =>
       import('./features/data/data.module').then(m => m.DataModule)
+  },
+  {
+    path: 'column',
+    loadChildren: () =>
+      import('./features/column/column.module').then(m => m.ColumnModule)
   }
 ];
 
