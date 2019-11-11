@@ -5,7 +5,6 @@ import { takeUntil } from 'rxjs/operators';
 import { CustomerService } from 'src/app/services';
 
 @Component({
-  selector: 'app-infinite',
   templateUrl: './infinite.component.html',
   styleUrls: ['./infinite.component.scss']
 })

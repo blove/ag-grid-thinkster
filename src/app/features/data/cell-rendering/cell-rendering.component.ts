@@ -4,7 +4,6 @@ import { ColDef, GridApi } from 'ag-grid-community';
 import { customers } from '../../../../../data/data.json';
 
 @Component({
-  selector: 'app-cell-rendering',
   templateUrl: './cell-rendering.component.html',
   styleUrls: ['./cell-rendering.component.scss']
 })

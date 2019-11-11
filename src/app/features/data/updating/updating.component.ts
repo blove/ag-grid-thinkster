@@ -6,7 +6,6 @@ import { map, takeUntil } from 'rxjs/operators';
 import { customers } from '../../../../../data/data.json';
 
 @Component({
-  selector: 'app-updating',
   templateUrl: './updating.component.html',
   styleUrls: ['./updating.component.scss']
 })
