@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ColDef, ColumnApi } from 'ag-grid-community';
+import { ColDef, GridApi } from 'ag-grid-community';
 
 import { customers } from '../../../../../data/data.json';
 
 @Component({
-  templateUrl: './moving.component.html',
-  styleUrls: ['./moving.component.scss']
+  templateUrl: './sizing.component.html',
+  styleUrls: ['./sizing.component.scss']
 })
-export class MovingComponent {
+export class SizingComponent {
   /**
    * The column definitions is an array of ColDef objects.
    * headerName: The name to render in the column header.
@@ -16,21 +16,28 @@ export class MovingComponent {
    * field: The field of the row to get the cells data from.
    * sortable: Set to true to allow sorting on this column.
    * lockPosition: Set to true to always have column displayed first.
-   * supporessMovable: Set to true if you do not want this column to be movable via dragging.
+   * resizable: Set to true to allow column to be resized.
    */
   columnDefs: ColDef[] = [
-    { headerName: 'Name', field: 'name', lockPosition: true },
-    { headerName: 'Catch Phrase', field: 'catchPhrase', suppressMovable: true },
+    {
+      headerName: 'Name',
+      field: 'name',
+      lockPosition: true,
+      resizable: false,
+      width: 300
+    },
+    { headerName: 'Catch Phrase', field: 'catchPhrase' },
     { headerName: 'Street', field: 'address.street1' },
     { headerName: 'City', field: 'address.city' },
     { headerName: 'State', field: 'address.state' },
-    { headerName: 'Zip', field: 'address.zip' }
+    { headerName: 'Zip', field: 'address.zip', width: 80 }
   ];
 
   /** Default column definition. */
   defaultColDef: ColDef = {
     editable: true,
     filter: 'agTextColumnFilter',
+    resizable: true,
     sortable: true
   };
 
@@ -42,21 +49,7 @@ export class MovingComponent {
    */
   rowData: Array<{ [key: string]: string | number | object }> = customers;
 
-  /** The ag-Grid Column API. */
-  private columnApi: ColumnApi;
-
-  onGridReady({ columnApi }: { columnApi: ColumnApi }) {
-    this.columnApi = columnApi;
-  }
-
-  onMoveAddress(): void {
-    this.columnApi.moveColumns(
-      ['address.street1', 'address.city', 'address.state', 'address.zip'],
-      this.index.value
-    );
-  }
-
-  onMoveCatchPhrase(): void {
-    this.columnApi.moveColumn('catchPhrase', this.index.value);
+  onGridReady({ api }: { api: GridApi }) {
+    api.sizeColumnsToFit();
   }
 }

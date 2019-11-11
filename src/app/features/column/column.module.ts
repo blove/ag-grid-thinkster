@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SharedModule } from '../../shared/shared.module';
 import { DefaultComponent } from './default';
 import { MovingComponent } from './moving';
+import { SizingComponent } from './sizing';
 import { TypesComponent } from './types';
 
 const routes: Route[] = [
@@ -23,7 +24,8 @@ const routes: Route[] = [
     component: MovingComponent
   },
   {
-    path: 'sizing'
+    path: 'sizing',
+    component: SizingComponent
   },
   {
     path: 'pinning'
@@ -34,7 +36,12 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [DefaultComponent, MovingComponent, TypesComponent],
+  declarations: [
+    DefaultComponent,
+    MovingComponent,
+    TypesComponent,
+    SizingComponent
+  ],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,
