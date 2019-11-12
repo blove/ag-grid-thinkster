@@ -24,7 +24,7 @@ module.exports = () => {
         street1: faker.address.streetName(),
         city: faker.address.city(),
         state: faker.address.state(),
-        zip: faker.address.countryCode()
+        zip: faker.address.zipCode()
       }
     });
     for (let account = 0; account < getRandomInt(3) + 1; account++) {

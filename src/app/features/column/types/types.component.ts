@@ -5,7 +5,6 @@ import { ColDef } from 'ag-grid-community';
 import { accounts, customers, orders } from '../../../../../data/data.json';
 
 @Component({
-  selector: 'app-types',
   templateUrl: './types.component.html',
   styleUrls: ['./types.component.scss']
 })
