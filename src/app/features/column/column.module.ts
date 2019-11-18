@@ -31,9 +31,6 @@ const routes: Route[] = [
   {
     path: 'pinning',
     component: PinningComponent
-  },
-  {
-    path: 'delta'
   }
 ];
 

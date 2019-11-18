@@ -12,6 +12,12 @@ import { Customer } from '../models';
 export class CustomerService {
   constructor(private readonly httpClient: HttpClient) {}
 
+  fetch(): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>(
+      `${environment.apiBaseUrl}/customers`
+    );
+  }
+
   paginate(page = 1, limit = 20): Observable<Customer[]> {
     return this.httpClient.get<Customer[]>(
       `${environment.apiBaseUrl}/customers?_page=${page}&_limit=${limit}`
@@ -33,5 +39,12 @@ export class CustomerService {
           totalCount: Number(response.headers.get('X-Total-Count'))
         }))
       );
+  }
+
+  update(id: number, changes: Partial<Customer>) {
+    return this.httpClient.put(
+      `${environment.apiBaseUrl}/customers/${id}`,
+      changes
+    );
   }
 }

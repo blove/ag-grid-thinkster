@@ -1,12 +1,19 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Route, RouterModule } from '@angular/router';
-import { AgGridModule } from 'ag-grid-angular';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './features/home';
 import { SharedModule } from './shared/shared.module';
+import { AppEffects } from './state/app.effects';
+import { CustomerEffects } from './state/customer.effects';
+import { metaReducers, reducers } from './state/reducers';
 
 const directives = [AppComponent, HomeComponent];
 
@@ -43,9 +50,27 @@ const routes: Route[] = [
   declarations: [...directives],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    EffectsModule.forRoot([AppEffects]),
     HttpClientModule,
     RouterModule.forRoot(routes),
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
+    EffectsModule.forFeature([CustomerEffects])
+    // StoreModule.forFeature(
+    //   fromCustomer.customersFeatureKey,
+    //   fromCustomer.reducer
+    // )
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,9 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 
+import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AsyncComponent } from './async/async.component';
 import { CellRenderingComponent } from './cell-rendering';
+import { DeltaComponent } from './delta';
 import { InfiniteComponent } from './infinite';
 import { SimpleComponent } from './simple';
 import { UpdatingComponent } from './updating';
@@ -34,6 +36,10 @@ const routes: Routes = [
     component: UpdatingComponent
   },
   {
+    path: 'delta',
+    component: DeltaComponent
+  },
+  {
     path: 'infinite',
     component: InfiniteComponent
   }
@@ -43,6 +49,7 @@ const routes: Routes = [
   declarations: [
     AsyncComponent,
     CellRenderingComponent,
+    DeltaComponent,
     InfiniteComponent,
     SimpleComponent,
     UpdatingComponent,
@@ -52,6 +59,7 @@ const routes: Routes = [
     AgGridModule.withComponents([]),
     CommonModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule
