@@ -8,6 +8,7 @@ import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { NumberComponent } from './number';
 import { SearchingComponent } from './searching';
+import { TextComponent } from './text';
 
 const routes: Route[] = [
   {
@@ -19,7 +20,8 @@ const routes: Route[] = [
     component: NumberComponent
   },
   {
-    path: 'text'
+    path: 'text',
+    component: TextComponent
   },
   {
     path: 'date'
@@ -30,7 +32,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [SearchingComponent, NumberComponent],
+  declarations: [SearchingComponent, NumberComponent, TextComponent],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,
