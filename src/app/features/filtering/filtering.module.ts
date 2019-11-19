@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Route, RouterModule } from '@angular/router';
@@ -6,6 +6,7 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { NumberComponent } from './number';
 import { SearchingComponent } from './searching';
 
 const routes: Route[] = [
@@ -14,7 +15,8 @@ const routes: Route[] = [
     component: SearchingComponent
   },
   {
-    path: 'number'
+    path: 'number',
+    component: NumberComponent
   },
   {
     path: 'text'
@@ -28,7 +30,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [SearchingComponent],
+  declarations: [SearchingComponent, NumberComponent],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,
@@ -37,6 +39,7 @@ const routes: Route[] = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class FilteringModule {}
