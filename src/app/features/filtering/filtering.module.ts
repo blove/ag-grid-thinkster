@@ -6,6 +6,7 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { DateComponent } from './date';
 import { NumberComponent } from './number';
 import { SearchingComponent } from './searching';
 import { TextComponent } from './text';
@@ -24,7 +25,8 @@ const routes: Route[] = [
     component: TextComponent
   },
   {
-    path: 'date'
+    path: 'date',
+    component: DateComponent
   },
   {
     path: 'floating'
@@ -32,7 +34,12 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [SearchingComponent, NumberComponent, TextComponent],
+  declarations: [
+    SearchingComponent,
+    NumberComponent,
+    TextComponent,
+    DateComponent
+  ],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,
