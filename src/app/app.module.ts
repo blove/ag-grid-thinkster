@@ -43,6 +43,13 @@ const routes: Route[] = [
     path: 'column',
     loadChildren: () =>
       import('./features/column/column.module').then(m => m.ColumnModule)
+  },
+  {
+    path: 'filtering',
+    loadChildren: () =>
+      import('./features/filtering/filtering.module').then(
+        m => m.FilteringModule
+      )
   }
 ];
 
@@ -67,10 +74,6 @@ const routes: Route[] = [
       logOnly: environment.production
     }),
     EffectsModule.forFeature([CustomerEffects])
-    // StoreModule.forFeature(
-    //   fromCustomer.customersFeatureKey,
-    //   fromCustomer.reducer
-    // )
   ],
   providers: [],
   bootstrap: [AppComponent]
