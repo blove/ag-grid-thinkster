@@ -50,6 +50,11 @@ const routes: Route[] = [
       import('./features/filtering/filtering.module').then(
         m => m.FilteringModule
       )
+  },
+  {
+    path: 'rows',
+    loadChildren: () =>
+      import('./features/rows/rows.module').then(m => m.RowsModule)
   }
 ];
 
