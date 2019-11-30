@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { DraggingComponent } from './dragging';
+import { FullWidthComponent } from './full-width/full-width.component';
 import { HeightComponent } from './height';
 import { PinningComponent } from './pinning';
 import { SortingComponent } from './sorting';
@@ -34,13 +35,15 @@ const routes: Route[] = [
     component: HeightComponent
   },
   {
-    path: 'width'
+    path: 'full-width',
+    component: FullWidthComponent
   }
 ];
 
 @NgModule({
   declarations: [
     DraggingComponent,
+    FullWidthComponent,
     HeightComponent,
     PinningComponent,
     SortingComponent,

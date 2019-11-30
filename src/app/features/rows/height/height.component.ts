@@ -78,7 +78,7 @@ export class HeightComponent {
   );
 
   constructor(
-    private currencyPipe: CurrencyPipe,
+    private readonly currencyPipe: CurrencyPipe,
     private readonly datePipe: DatePipe
   ) {}
 
