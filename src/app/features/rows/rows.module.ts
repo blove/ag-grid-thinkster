@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Route, RouterModule } from '@angular/router';
@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { DraggingComponent } from './dragging';
+import { HeightComponent } from './height';
 import { PinningComponent } from './pinning';
 import { SortingComponent } from './sorting';
 import { SpanningComponent } from './spanning';
@@ -29,7 +30,8 @@ const routes: Route[] = [
     component: PinningComponent
   },
   {
-    path: 'height'
+    path: 'height',
+    component: HeightComponent
   },
   {
     path: 'width'
@@ -39,6 +41,7 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     DraggingComponent,
+    HeightComponent,
     PinningComponent,
     SortingComponent,
     SpanningComponent
@@ -51,6 +54,7 @@ const routes: Route[] = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule
-  ]
+  ],
+  providers: [CurrencyPipe, DatePipe]
 })
 export class RowsModule {}
