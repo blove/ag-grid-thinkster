@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { DraggingComponent } from './dragging';
+import { PinningComponent } from './pinning';
 import { SortingComponent } from './sorting';
 import { SpanningComponent } from './spanning';
 
@@ -24,7 +25,8 @@ const routes: Route[] = [
     component: SpanningComponent
   },
   {
-    path: 'pinning'
+    path: 'pinning',
+    component: PinningComponent
   },
   {
     path: 'height'
@@ -35,7 +37,12 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [SortingComponent, DraggingComponent, SpanningComponent],
+  declarations: [
+    DraggingComponent,
+    PinningComponent,
+    SortingComponent,
+    SpanningComponent
+  ],
   imports: [
     AgGridModule.withComponents([]),
     CommonModule,
