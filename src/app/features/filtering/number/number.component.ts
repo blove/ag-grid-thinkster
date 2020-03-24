@@ -17,10 +17,6 @@ import {
 export class NumberComponent {
   /**
    * The column definitions is an array of ColDef objects.
-   * headerName: The name to render in the column header.
-   *             If not specified and field is specified, the field name would be used as the header name.
-   * field: The field of the row to get the cells data from.
-   * sortable: Set to true to allow sorting on this column.
    */
   columnDefs: ColDef[] = [
     {

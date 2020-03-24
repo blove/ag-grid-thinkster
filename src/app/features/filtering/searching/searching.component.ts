@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { customers } from '../../../../../data/data.json';
+import { Customer } from '../../../models';
 
 @Component({
   templateUrl: './searching.component.html',
@@ -13,18 +14,20 @@ import { customers } from '../../../../../data/data.json';
 export class SearchingComponent implements OnDestroy, OnInit {
   /**
    * The column definitions is an array of ColDef objects.
-   * headerName: The name to render in the column header.
-   *             If not specified and field is specified, the field name would be used as the header name.
-   * field: The field of the row to get the cells data from.
-   * sortable: Set to true to allow sorting on this column.
    */
   columnDefs: ColDef[] = [
     { headerName: 'Name', field: 'name' },
     { headerName: 'Catch Phrase', field: 'catchPhrase' },
-    { headerName: 'Street', field: 'address.street1' },
-    { headerName: 'City', field: 'address.city' },
-    { headerName: 'State', field: 'address.state' },
-    { headerName: 'Zip', field: 'address.zip' }
+    { headerName: 'City', valueGetter: ({ data }) => data.address.city },
+    {
+      headerName: 'Address',
+      resizable: true,
+      cellRenderer: ({ data }: { data: Customer }) =>
+        `${data.address.street1} ${data.address.city}, ${data.address.state} ${data.address.zip}`,
+      getQuickFilterText: ({ data }) => {
+        return `${data.address.street1} ${data.address.city} ${data.address.state} ${data.address.zip}`;
+      }
+    }
   ];
 
   /**
@@ -54,6 +57,5 @@ export class SearchingComponent implements OnDestroy, OnInit {
 
   onGridReady({ api }: { api: GridApi }) {
     this.gridApi = api;
-    api.sizeColumnsToFit();
   }
 }

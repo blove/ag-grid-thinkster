@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
 import { ColDef, GridApi } from 'ag-grid-community';
 
-import { customers } from '../../../../../data/data.json';
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
+
+import {
+  accounts,
+  customers,
+  orderItems,
+  orders,
+  products
+} from '../../../../../data/data.json';
 
 @Component({
   selector: 'app-floating',
@@ -11,39 +19,64 @@ import { customers } from '../../../../../data/data.json';
 export class FloatingComponent {
   /**
    * The column definitions is an array of ColDef objects.
-   * headerName: The name to render in the column header.
-   *             If not specified and field is specified, the field name would be used as the header name.
-   * field: The field of the row to get the cells data from.
-   * sortable: Set to true to allow sorting on this column.
    */
   columnDefs: ColDef[] = [
-    { headerName: 'Name', field: 'name', filter: true },
-    { headerName: 'Catch Phrase', field: 'catchPhrase', filter: true },
-    { headerName: 'Street', field: 'address.street1', filter: true },
-    { headerName: 'City', field: 'address.city', filter: true },
-    { headerName: 'State', field: 'address.state', filter: true },
     {
-      headerName: 'Zip',
-      field: 'address.zip',
-      filter: 'agNumberColumnFilter',
-      suppressMenu: true
+      headerName: 'Customer Name',
+      field: 'customer.name',
+      filter: 'agTextColumnFilter'
+    },
+    {
+      headerName: 'Account No',
+      field: 'account.accountNumber',
+      filter: 'agNumberColumnFilter'
+    },
+    {
+      headerName: 'Date of Order',
+      field: 'dateOfOrder',
+      valueFormatter: ({ value }) =>
+        this.datePipe.transform(value, 'shortDate'),
+      filter: 'agDateColumnFilter',
+      filterParams: {
+        comparator: (filterLocalDateAtMidnight, cellValue) => {
+          const date = new Date(cellValue);
+          date.setHours(0, 0, 0, 0);
+          if (date < filterLocalDateAtMidnight) {
+            return -1;
+          } else if (date > filterLocalDateAtMidnight) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+      }
+    },
+    {
+      headerName: 'Total',
+      field: 'total',
+      filter: false
     }
   ];
 
   /**
-   * Import customers from /data/data.json file
+   * Import orders from /data/data.json file and join with account and customer data.
+   * dateOfOrder is a Date object with a hard coded time
    */
-  customers: Array<{ [key: string]: string | number | object }> = customers.map(
-    customer => ({
-      ...customer,
-      address: {
-        ...customer.address,
-        zip: Number(customer.address.zip.slice(0, 5))
-      }
+  rowData: Array<{ [key: string]: string | number | object }> = orders.map(
+    order => ({
+      ...order,
+      // create Date object value for dateOfOrder field
+      // dateOfOrder: new Date(`${order.dateOfOrder.slice(0, 10)}T00:00:00.0`),
+      dateOfOrder: order.dateOfOrder,
+      account: accounts.find(account => account.id === order.accountId),
+      customer: customers.find(customer => customer.id === order.customerId),
+      orderItems: orderItems.filter(item => item.orderId === order.id),
+      total: orderItems
+        .filter(item => item.orderId === order.id)
+        .map(item => products.find(product => product.id === item.productId))
+        .reduce((prev, current) => prev + Number(current.price), 0)
     })
   );
 
-  onGridReady({ api }: { api: GridApi }) {
-    api.sizeColumnsToFit();
-  }
+  constructor(private readonly datePipe: DatePipe) {}
 }

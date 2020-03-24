@@ -17,21 +17,19 @@ import {
 export class TextComponent {
   /**
    * The column definitions is an array of ColDef objects.
-   * headerName: The name to render in the column header.
-   *             If not specified and field is specified, the field name would be used as the header name.
-   * field: The field of the row to get the cells data from.
-   * sortable: Set to true to allow sorting on this column.
    */
   columnDefs: ColDef[] = [
     {
       headerName: 'Customer Name',
       field: 'customer.name',
-      filter: 'agTextColumnFilter'
+      filter: 'agTextColumnFilter',
+      filterParams: {
+        filterOptions: ['contains', 'notContains']
+      }
     },
     {
       headerName: 'Account No',
-      field: 'account.accountNumber',
-      filter: 'agNumberColumnFilter'
+      field: 'account.accountNumber'
     },
     {
       headerName: 'Date of Order',
