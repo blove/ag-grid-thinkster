@@ -1,6 +1,7 @@
+import { ColDef, GridApi } from 'ag-grid-community';
+
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ColDef, GridApi } from 'ag-grid-community';
 
 import {
   accounts,
@@ -17,10 +18,6 @@ import {
 export class FullWidthComponent implements OnInit {
   /**
    * The column definitions is an array of ColDef objects.
-   * headerName: The name to render in the column header.
-   *             If not specified and field is specified, the field name would be used as the header name.
-   * field: The field of the row to get the cells data from.
-   * sortable: Set to true to allow sorting on this column.
    */
   columnDefs: ColDef[] = [
     {
@@ -67,8 +64,7 @@ export class FullWidthComponent implements OnInit {
 
   constructor(
     private readonly currencyPipe: CurrencyPipe,
-    private readonly datePipe: DatePipe,
-    private readonly renderer: Renderer2
+    private readonly datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -80,11 +76,7 @@ export class FullWidthComponent implements OnInit {
     ];
   }
 
-  fullWidthCellRenderer(params): string {
-    // const el = this.renderer.createElement('div') as HTMLDivElement;
-    // el.className = 'full-width-cell';
-    // el.innerHTML = 'foo';
-    // return el;
+  fullWidthCellRenderer(): string {
     return `
       <div class="full-width-cell">
         ag-Grid is 💪
